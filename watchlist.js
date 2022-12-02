@@ -5,7 +5,7 @@ window.addEventListener("message",function(e){
     const data = JSON.parse(e.data)
     if(typeof data!="undefined"){
         this.localStorage.setItem("array",data)
-        console.log(data)
+        // console.log(data)
     }
 
 })
@@ -18,7 +18,7 @@ document.addEventListener("click",function(e){
         e.target.classList.add("fa-minus")
         // console.log(e.target.dataset.iid)
         watchListDatasec.push(e.target.dataset.iid)
-        console.log(watchListDatasec)
+        // console.log(watchListDatasec)
         localStorage.setItem("localWatchList", JSON.stringify(watchListDatasec));
         e.target.textContent = "  Remove From Watchlist"
 
@@ -27,7 +27,7 @@ document.addEventListener("click",function(e){
         e.target.classList.remove("fa-minus")
         e.target.classList.add("fa-plus")
         watchListDatasec=arrayRemove(watchListDatasec, e.target.dataset.iid)
-        console.log(watchListDatasec)
+        // console.log(watchListDatasec)
         localStorage.setItem("localWatchList", JSON.stringify(watchListDatasec));
         e.target.textContent = "  Add to Watchlist"
     }
@@ -38,11 +38,11 @@ function arrayRemove(arr, value) {
     });
 }
 
-console.log(localStorage.localWatchList)
+// console.log(localStorage.localWatchList)
 renderMain(JSON.parse(localStorage.localWatchList))
 async function renderMain(data){
     htmlText = ``;
-    console.log(data[0])
+    // console.log(data[0])
     let finalEl = data.length-1
     for(let i = 0; i<=finalEl; i++){
         console.log("I -> "+i)

@@ -9,12 +9,12 @@ if(localStorage.getItem("localInput")){
     globalInput = localStorage.getItem("localInput")
     searchInp.value = localStorage.getItem("localInput")
     let currentPage = localStorage.getItem("localPage")
-    console.log("current page -> " + currentPage)
+    // console.log("current page -> " + currentPage)
     renderPage(parseInt(currentPage),globalInput)
 }
 document.addEventListener("change",(e)=>{
     if(e.target.classList.contains("pages"))
-        console.log(e.target.value)
+        // console.log(e.target.value)
         renderPage(e.target.value,globalInput)
 })
 let watchListData = []
@@ -33,7 +33,7 @@ function handleSearch(){
 }
 
 async function renderPage(pageNo,toSearch){
-    console.log(" page -> " + pageNo)
+    // console.log(" page -> " + pageNo)
     localStorage.setItem("localInput", toSearch);
     localStorage.setItem("localPage", pageNo);
     await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=44b8e4dc&s=${toSearch}&page=${pageNo}`)
@@ -43,7 +43,7 @@ async function renderPage(pageNo,toSearch){
                 renderNotFound()
                 return
             }
-            console.log(data)
+            // console.log(data)
             renderMain(data)
             // let mainElHtml =  ``
             // mainElHtml += `<div class = "movies">`
@@ -85,7 +85,7 @@ document.addEventListener("click",function(e){
         e.target.classList.add("fa-minus")
         // console.log(e.target.dataset.iid)
         watchListData.push(e.target.dataset.iid)
-        console.log(watchListData)
+        // console.log(watchListData)
         sendData(watchListData)
         localStorage.setItem("localWatchList", JSON.stringify(watchListData));
         e.target.textContent = "  Remove From Watchlist"
@@ -95,7 +95,7 @@ document.addEventListener("click",function(e){
         e.target.classList.remove("fa-minus")
         e.target.classList.add("fa-plus")
         watchListData=arrayRemove(watchListData, e.target.dataset.iid)
-        console.log(watchListData)
+        // console.log(watchListData)
         sendData(watchListData)
         localStorage.setItem("localWatchList", JSON.stringify(watchListData));
         e.target.textContent = "  Add to Watchlist"
@@ -116,7 +116,7 @@ async function renderMain(data){
     `
     }
     htmlText += `</select>`
-    console.log("find => "+data.Search.length)
+    // console.log("find => "+data.Search.length)
     let finalEl = data.Search.length-1
     for(let i = 0; i<data.Search.length; i++){
         console.log("I -> "+i)
@@ -126,7 +126,7 @@ async function renderMain(data){
             .then(res=>res.json())
             .then(tempDetail=>{
                 
-                console.log(tempDetail)
+                // console.log(tempDetail)
                 currDetail = tempDetail
                 let watchListBtn = `
                     <span><i class="fa fa-plus" data-iid = ${curr.imdbID}> Add To WatchList</i></span>

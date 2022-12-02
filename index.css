@@ -1,6 +1,12 @@
 *, *::before, *::after{
     box-sizing: border-box;
 }
+#loading{
+    display: block;
+    justify-self: center;
+    width: 30%;
+    margin: 50px auto;
+}
 body{
     background-color: #121212;
     font-family: 'inter',sans-serif;

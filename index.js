@@ -102,6 +102,7 @@ document.addEventListener("click",function(e){
     }
 })
 async function renderMain(data){
+    mainEl.innerHTML = `<img id = "loading" src = "loading.svg" alt="loading">`
     htmlText = ``;
     htmlText +=`
         <select name="pages" id="pages" class ="pages">

@@ -36,7 +36,7 @@ async function renderPage(pageNo,toSearch){
     console.log(" page -> " + pageNo)
     localStorage.setItem("localInput", toSearch);
     localStorage.setItem("localPage", pageNo);
-    await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=44b8e4dc&s=${toSearch}&page=${pageNo}`)
+    await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=44b8e4dc&s=${toSearch}&page=${pageNo}`)
         .then(res=>res.json())
         .then(data=>{
             if(data.Response=='False'){
@@ -120,7 +120,7 @@ async function renderMain(data){
         console.log("I -> "+i)
         const curr = data.Search[i]
         let currDetail
-        await fetch(`http://www.omdbapi.com/?i=${curr.imdbID}&apikey=44b8e4dc`)
+        await fetch(`https://www.omdbapi.com/?i=${curr.imdbID}&apikey=44b8e4dc`)
             .then(res=>res.json())
             .then(tempDetail=>{
                 

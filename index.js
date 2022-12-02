@@ -86,6 +86,7 @@ document.addEventListener("click",function(e){
         // console.log(e.target.dataset.iid)
         watchListData.push(e.target.dataset.iid)
         console.log(watchListData)
+        sendData(watchListData)
         localStorage.setItem("localWatchList", JSON.stringify(watchListData));
         e.target.textContent = "  Remove From Watchlist"
 
@@ -95,6 +96,7 @@ document.addEventListener("click",function(e){
         e.target.classList.add("fa-plus")
         watchListData=arrayRemove(watchListData, e.target.dataset.iid)
         console.log(watchListData)
+        sendData(watchListData)
         localStorage.setItem("localWatchList", JSON.stringify(watchListData));
         e.target.textContent = "  Add to Watchlist"
     }
@@ -170,3 +172,8 @@ function arrayRemove(arr, value) {
     });
 }
 // renderMain()
+function sendData(x){
+    const iframe = document.getElementById("iframe-watchlist")
+    const wind = iframe.contentWindow
+    wind.postMessage(JSON.stringify(x),"*")
+}

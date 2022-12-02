@@ -247,4 +247,7 @@ span i{
         width: 80%;
         /* border: 1px solid pink; */
     }
+    .movie{
+        gap: 2em;
+    }
 }

@@ -1,37 +1,65 @@
 const mainEl  = document.getElementById("main-el")
-
 let htmlText = ``;
+window.addEventListener("message",function(e){
+    if(e.origin!=="index.html")return
+    const data = JSON.parse(e.data)
+    if(typeof data!="undefined"){
+        this.localStorage.setItem("array",data)
+        console.log(data)
+    }
+
+})
+
+
 document.addEventListener("click",function(e){
+    let watchListDatasec = JSON.parse(localStorage.localWatchList)
     if(e.target.classList.contains("fa-plus")){
         e.target.classList.remove("fa-plus")
         e.target.classList.add("fa-minus")
-        console.log(localStorage)
+        // console.log(e.target.dataset.iid)
+        watchListDatasec.push(e.target.dataset.iid)
+        console.log(watchListDatasec)
+        localStorage.setItem("localWatchList", JSON.stringify(watchListDatasec));
         e.target.textContent = "  Remove From Watchlist"
+
     }
     else if(e.target.classList.contains("fa-minus")){
         e.target.classList.remove("fa-minus")
         e.target.classList.add("fa-plus")
+        watchListDatasec=arrayRemove(watchListDatasec, e.target.dataset.iid)
+        console.log(watchListDatasec)
+        localStorage.setItem("localWatchList", JSON.stringify(watchListDatasec));
         e.target.textContent = "  Add to Watchlist"
     }
 })
+function arrayRemove(arr, value) {
+    return arr.filter(function(ele){ 
+        return ele != value; 
+    });
+}
+
+console.log(localStorage.localWatchList)
+renderMain(JSON.parse(localStorage.localWatchList))
 async function renderMain(data){
     htmlText = ``;
-    
-    // console.log("data  req -> "+ data.totalResults)
+    console.log(data[0])
     let finalEl = data.length-1
-    for(let i = 0; i<data.length; i++){
+    for(let i = 0; i<=finalEl; i++){
+        console.log("I -> "+i)
         const curr = data[i]
-        await fetch(`http://www.omdbapi.com/?i=${curr}&apikey=44b8e4dc`)
+        let currDetail
+        await fetch(`https://www.omdbapi.com/?i=${curr}&apikey=44b8e4dc`)
             .then(res=>res.json())
             .then(tempDetail=>{
                 
+                console.log(tempDetail)
                 currDetail = tempDetail
                 let watchListBtn = `
-                    <span><i class="fa fa-plus" data-iid = ${curr}>   Add To WatchList</i></span>
+                    <span><i class="fa fa-plus" data-iid = ${curr}> Add To WatchList</i></span>
                 `
-                if(watchListData.includes(curr))
+                if(data.includes(curr))
                 watchListBtn = `
-                    <span><i class="fa fa-minus" data-iid = ${curr}>   Remove from watchList</i></span>
+                    <span><i class="fa fa-minus" data-iid = ${curr}> Remove from watchList</i></span>
                 `
                 htmlText+=`
                 <div class="movies">
@@ -60,8 +88,6 @@ async function renderMain(data){
     }
     render(htmlText)
 }
-renderMain()
 function render(htmlText){
-    // console.log("final text-> "+htmlText)
     mainEl.innerHTML = htmlText
 }

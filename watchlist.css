@@ -73,29 +73,32 @@ header .heading{
     width: 100%;
 }
 .movies{
+    padding: 1em;
     width: 100%;
 }
 .movie{
     /* margin: 1em; */
     width: 100%;
     display: flex;
+    justify-content: center;
     gap: 1em;
 }
 .movie .poster{
+    justify-content: center;
+    align-items: center;
     display: flex;
-    width: 25%;
+    width: 30%;
     border: 1px solid pink;
 }
 .poster img{
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .movie .detail{
+    max-width: 450px;
     font-size: 3vw;
     width: 70%;
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
 }
 .rating{
     font-size: 0.5em;
@@ -106,24 +109,30 @@ header .heading{
     align-items: center;
     gap: 1em;
 }
-i{
+span i{
+    cursor: pointer;
+    border-radius: 20px;
     background-color: white;
     color: black;
-    margin-left: 1em;
+    margin: 1em 1em 0 1em;
     padding: 0.5em 1em;
     font-family: 'inter';
 }
 @media (min-width: 700px) {
     .movies{
+        min-width: 700px;
         width: 70%;
         margin: 1em auto;
     }
     .movie .poster{
-        width: 20%;
+        width: 25%;
     }
     .movie .detail{
         font-size: 1.2rem;
         width: 80%;
-        border: 1px solid pink;
+        /* border: 1px solid pink; */
+    }
+    .movie{
+        gap: 2em;
     }
 }

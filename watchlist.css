@@ -14,7 +14,7 @@ a{
 /* HEADER */
 header{
     /* border: 1px solid pink; */
-    max-height: 40vh;
+    max-height: 25vh;
     border: 10 px solid rgb(180, 94, 94);
     display: grid;
     grid-template-columns: 2fr 1fr;
